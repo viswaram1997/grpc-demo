@@ -1,0 +1,33 @@
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.order.routeguide";
+option java_outer_classname = "OrderRouteGuideProto";
+option objc_class_prefix = "RTG";
+
+package routeguide;
+
+// Interface exported by the server.
+service RouteGuide {
+
+  rpc GetOrderInfo(Order) returns (OrderDetails) {}
+
+  rpc GetOrderListInfo(OrderList) returns (stream OrderDetails) {}
+
+}
+
+
+message Order {
+  int32 id = 1;
+}
+
+message OrderDetails {
+  string orderName = 1;
+}
+
+message OrderList {
+  repeated int32 orderId  = 1;
+}
+
+
